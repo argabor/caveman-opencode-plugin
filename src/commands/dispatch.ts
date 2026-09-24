@@ -29,14 +29,22 @@ export function dispatchCommand(cmd: string, args: string, sessionID: string): s
   }
 
   if (cmd === 'caveman-commit') {
-    const result = handleCommit(sessionID, args.split(/\s+/))
-    return result.systemInstruction || result.message || ''
+    return withUserInput(handleCommit(sessionID, args.split(/\s+/)), args)
   }
 
   if (cmd === 'caveman-review') {
-    const result = handleReview(sessionID, args.split(/\s+/))
-    return result.systemInstruction || result.message || ''
+    return withUserInput(handleReview(sessionID, args.split(/\s+/)), args)
   }
 
   return null
+}
+
+/**
+ * The command text replaces the user's prompt, so the arguments (e.g. the code
+ * to review) must be carried over after the instruction or the model gets
+ * nothing to work on.
+ */
+function withUserInput(result: { systemInstruction?: string; message?: string }, args: string): string {
+  if (!result.systemInstruction) return result.message || ''
+  return args ? `${result.systemInstruction}\n\n${args}` : result.systemInstruction
 }
