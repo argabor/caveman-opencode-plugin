@@ -1,18 +1,20 @@
-# caveman-opencode-plugin
+# @argabor/caveman-opencode-plugin
 
 Caveman communication mode plugin for [opencode](https://opencode.ai). Adapts [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman) into hook-based plugin.
+
+> Fork of [`caveman-opencode-plugin`](https://www.npmjs.com/package/caveman-opencode-plugin) by dantesCode, adding **OpenCode V2 support** (dual-generation export). Published under the `@argabor` scope.
 
 ## Installation
 
 ```bash
 # Global install
-opencode plugin caveman-opencode-plugin@latest --global
+opencode plugin @argabor/caveman-opencode-plugin@latest --global
 
 # Or local install
-opencode plugin caveman-opencode-plugin@latest
+opencode plugin @argabor/caveman-opencode-plugin@latest
 ```
 
-**NPM:** https://www.npmjs.com/package/caveman-opencode-plugin
+**NPM:** https://www.npmjs.com/package/@argabor/caveman-opencode-plugin
 
 Add to `opencode.json`.
 
@@ -20,7 +22,7 @@ OpenCode V1:
 
 ```json
 {
-  "plugin": ["caveman-opencode-plugin"]
+  "plugin": ["@argabor/caveman-opencode-plugin"]
 }
 ```
 
@@ -28,7 +30,7 @@ OpenCode V2:
 
 ```json
 {
-  "plugins": ["caveman-opencode-plugin"]
+  "plugins": ["@argabor/caveman-opencode-plugin"]
 }
 ```
 
@@ -56,10 +58,10 @@ Run the interactive setup script:
 
 ```bash
 # Download and run
-curl -fsSL https://raw.githubusercontent.com/dantesCode/caveman-opencode-plugin/main/setup.sh | bash
+curl -fsSL https://raw.githubusercontent.com/argabor/caveman-opencode-plugin/main/setup.sh | bash
 
 # Or clone and run locally
-curl -O https://raw.githubusercontent.com/dantesCode/caveman-opencode-plugin/main/setup.sh
+curl -O https://raw.githubusercontent.com/argabor/caveman-opencode-plugin/main/setup.sh
 bash setup.sh
 ```
 
