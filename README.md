@@ -14,13 +14,41 @@ opencode plugin caveman-opencode-plugin@latest
 
 **NPM:** https://www.npmjs.com/package/caveman-opencode-plugin
 
-Add to `opencode.json`:
+Add to `opencode.json`.
+
+OpenCode V1:
 
 ```json
 {
   "plugin": ["caveman-opencode-plugin"]
 }
 ```
+
+OpenCode V2:
+
+```json
+{
+  "plugins": ["caveman-opencode-plugin"]
+}
+```
+
+## OpenCode V2 support
+
+This package is dual-generation: one default export provides both implementations.
+
+- V1 calls `server()` — requires OpenCode `>= 1.18.29` for the object entrypoint.
+- V2 reads `id` + `setup()` and ignores `server()`.
+
+The V2 half uses the V2 domain APIs:
+
+- `ctx.session.hook("context", ...)` replaces the V1 `experimental.chat.system.transform` hook for system-prompt injection.
+- `ctx.command.transform(...)` replaces the V1 `config` + `command.execute.before` pair for the `/caveman*` commands.
+
+`caveman.json` is read from the same locations on both generations (project root, then `$XDG_CONFIG_HOME/opencode/`).
+
+> On V1 hosts `>= 1.17.10` an embedded V2 core may also invoke `setup()` in a
+> registration-only pass, which can add extra `[v2]` log lines. It does not
+> change V1 behavior.
 
 ## Setup
 
